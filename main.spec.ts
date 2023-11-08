@@ -1,4 +1,4 @@
-import { mainFunction } from '../main.ts';
+import mainFunction from "./main";
 
 describe('testing plus operation', () => {
     test('3+2 string should result in 5', () => {

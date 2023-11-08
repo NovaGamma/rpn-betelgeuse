@@ -50,3 +50,5 @@ const operation = (number1: number, number2: number | null, operator: string): n
 
 const result = mainFunction(prompt('Please provide a rpn operation'));
 console.log(result);
+
+export default mainFunction
