@@ -80,3 +80,8 @@ Error: expecting two arguments for `+`, got one (3)
 ```
 
 * Handle complex numbers
+
+
+* il faut installer 
+npm install mocha --save-dev
+npm install @types/mocha --save-dev

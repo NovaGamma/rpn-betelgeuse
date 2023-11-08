@@ -1,4 +1,5 @@
 import mainFunction from "./main";
+import {expect, jest, test} from '@jest/globals';
 
 describe('testing plus operation', () => {
     test('3+2 string should result in 5', () => {
