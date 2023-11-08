@@ -18,20 +18,23 @@ describe('simpleOperation', () => {
     expect(simpleOperations(1, 1, '+')).toEqual(2);
   });
 
-  it('should return an substraction result', () => {
+  it('should return a substraction result', () => {
     expect(simpleOperations(1, 1, '-')).toEqual(0);
   });
   
-  it('should return an division result', () => {
+  it('should return a division result', () => {
     expect(simpleOperations(4, 2, '/')).toEqual(2);
   });
 
-  it('should return an division by 0 result', () => {
+  it('should return a division by 0 result', () => {
     expect(simpleOperations(4, 0, '/')).toThrowError('Division by 0 is impossible');
   });
 
-  it('should return an multiplication result', () => {
+  it('should return a multiplication result', () => {
     expect(simpleOperations(3, 3, '*')).toEqual(9);
+  });
+  it('should return a multiplication by 0 result', () => {
+    expect(simpleOperations(3, 0, '*')).toEqual(0);
   });
 
   it('should return a substraction with negative result', () => {
