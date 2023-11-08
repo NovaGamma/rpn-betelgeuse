@@ -1,4 +1,8 @@
-const mainFunction = (input: string | null): number => {
+import PromptSync from 'prompt-sync';
+
+const prompt = PromptSync({sigint: true})
+
+export const mainFunction = (input: string | null): number => {
   if (!input) {
     return 0;
   }
@@ -30,7 +34,7 @@ const mainFunction = (input: string | null): number => {
   return stack.pop();
 }
 
-const operation = (number1: number, number2: number | null, operator: string): number => {
+export const operation = (number1: number, number2: number | null, operator: string): number => {
   switch (operator) {
     case '+':
       return number1 + (number2 ?? 0);
@@ -48,7 +52,5 @@ const operation = (number1: number, number2: number | null, operator: string): n
   }
 }
 
-const result = mainFunction(prompt('Please provide a rpn operation'));
+const result = mainFunction(prompt('Please provide a rpn operation: '));
 console.log(result);
-
-export default mainFunction
