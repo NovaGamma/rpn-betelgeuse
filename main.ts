@@ -17,7 +17,7 @@ export const mainFunction = (input: string | null): number => {
       }
 
       if (!number1) {
-        throw new Error("No number1");
+        throw new CustomNumber1Error("No number1");
       }
 
       result = operation(number1, number2, element);
@@ -46,3 +46,10 @@ export const operation = (number1: number, number2: number | null, operator: str
       return 1;
   }
 };
+
+export class CustomNumber1Error extends Error {
+  constructor(m: string) {
+    super(m);
+    Object.setPrototypeOf(this, CustomNumber1Error.prototype);
+  }
+}

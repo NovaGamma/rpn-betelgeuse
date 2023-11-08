@@ -1,4 +1,4 @@
-import { mainFunction, operation } from "./main";
+import { mainFunction, operation, CustomNumber1Error } from "./main";
 import { expect, test, describe } from "@jest/globals";
 
 describe("testing plus operation", () => {
@@ -32,8 +32,7 @@ describe("testing sqrt operation", () => {
 });
 
 describe("testing sqrt limits", () => {
-  const errorType = new Error("No number1");
   test("sqrt alone should throw", () => {
-    expect(mainFunction("sqrt")).toThrowError(errorType);
+    expect(() => mainFunction("sqrt")).toThrow(new CustomNumber1Error("No number1"));
   });
 });
