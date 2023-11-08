@@ -3,5 +3,5 @@ import { mainFunction } from "./main";
 
 const prompt = PromptSync({ sigint: true });
 
-const result = mainFunction(prompt("Please provide a rpn operation: "));
+const result = mainFunction(prompt("Please provide a rpn operation: ").split(' '));
 console.log(result);

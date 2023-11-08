@@ -1,11 +1,7 @@
-export const mainFunction = (input: string | null): number => {
-  if (!input) {
-    throw new Error("No input");
-  }
+export const mainFunction = (input: string[]): number => {
   const stack: number[] = new Array();
-  const arrayInput = input.split(" ");
 
-  arrayInput.forEach((element) => {
+  input.forEach((element) => {
     if (isNaN(Number(element))) {
       stack.push(operation(stack, element));
     } else {
@@ -34,14 +30,19 @@ export const operation = (stack: number[], operator: string): number => {
 export const complexOperations = (stack: number[], operator: string): number => {
   switch (operator) {
     case "sqrt":
+      if (stack.length !== 1) {
+        throw Error("Invalid input, please provide only one number before the sqrt operation");
+      }
       const number = stack.pop();
       if (number) {
         return Math.sqrt(number);
       } else {
-        throw Error("Invalid input, please provide a number before the operation");
+        throw Error("Invalid input, please provide a number before the sqrt operation");
       }
     case "max":
       return Math.max(...stack);
+    case "min":
+      return Math.min(...stack);
     default:
       throw Error(`Unknown operator: ${operator}`);
   }
@@ -61,10 +62,3 @@ export const simpleOperations = (n1: number, n2: number, operator: string): numb
       throw Error(`Unknown operator: ${operator}`);
   }
 };
-
-export class CustomNumber1Error extends Error {
-  constructor(m: string) {
-    super(m);
-    Object.setPrototypeOf(this, CustomNumber1Error.prototype);
-  }
-}
