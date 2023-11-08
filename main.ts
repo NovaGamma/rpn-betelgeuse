@@ -15,6 +15,10 @@ export const mainFunction = (input: string[]): number => {
 export const operation = (stack: number[], operator: string): number => {
   const simpleOperators = ["+", "-", "*", "/"];
   if (simpleOperators.includes(operator)) {
+    if (stack.length !== 2) {
+      throw Error(`Invalid input: ${stack.length} numbers provided, 2 expected`);
+    }
+
     const n1 = stack.pop();
     const n2 = stack.pop();
     if (n1 !== undefined && n2 !== undefined) {
@@ -55,6 +59,9 @@ export const simpleOperations = (n1: number, n2: number, operator: string): numb
     case "-":
       return n1 - n2;
     case "/":
+      if(n2 === 0) {
+        throw Error('Division by 0 is impossible')
+      }
       return n1 / n2;
     case "*":
       return n1 * n2;
