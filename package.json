@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node main.ts",
+    "start": "ts-node run.ts",
     "test": "jest"
   },
   "keywords": [],
