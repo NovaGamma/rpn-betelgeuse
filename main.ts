@@ -6,49 +6,63 @@ export const mainFunction = (input: string | null): number => {
   if (!input) {
     return 0;
   }
-  const stack = new Array();
+  const stack: number[] = new Array();
   const arrayInput = input.split(' ')
-  for (const element of arrayInput) {
+  
+  arrayInput.forEach((element) => {
     if (isNaN(Number(element))) {
-      let result;
-      let number1;
-      let number2;
-      if (element == 'sqrt') {
-        number1 = stack.pop();
-      } else {
-        number1 = stack.pop();
-        number2 = stack.pop();
-      }
-
-      if (!number1) {
-        console.error('No number1');
-        return 0;
-      }
-
-      result = operation(number1, number2, element);
-      stack.push(result);
+      stack.push(operation(stack, element));
     } else {
       stack.push(Number(element));
     }
-  }
-  return stack.pop();
+  })
+
+  return stack.pop() ?? 0;
 }
 
-export const operation = (number1: number, number2: number | null, operator: string): number => {
+export const operation = (stack: number[], operator: string): number => {
+  const simpleOperators = ['+', '-', '*', '/'];
+  if (simpleOperators.includes(operator)) {
+    const n1 = stack.pop();
+    const n2 = stack.pop();
+    if (n1 !== undefined && n2 !== undefined) {
+      return simpleOperations(n2, n1, operator)
+    } else {
+      throw Error('Invalid input, please provide 2 numbers before the operation')
+    }
+  } else {
+    return complexOperations(stack, operator)
+  }
+}
+
+export const complexOperations = (stack: number[], operator: string): number => {
   switch (operator) {
-    case '+':
-      return number1 + (number2 ?? 0);
-    case '-':
-      return number1 - (number2 ?? 0);
-    case '/':
-      return number1 / (number2 ?? 0);
-    case '*':
-      return number1 * (number2 ?? 0);
     case 'sqrt':
-      return Math.sqrt(number1);
+      const number = stack.pop()
+      if(number) {
+        return Math.sqrt(number);
+      } else {
+        throw Error("Invalid input, please provide a number before the operation")
+      }
+    case 'max':
+      return Math.max(...stack)
     default:
-      console.error('Operation not allowed');
-      return 1;
+      throw Error(`Unknown operator: ${operator}`)
+  }
+}
+
+export const simpleOperations = (n1: number, n2: number, operator: string): number => {
+  switch(operator) {
+    case '+':
+      return n1 + n2;
+    case '-':
+      return n1 - n2;
+    case '/':
+      return n1 / n2;
+    case '*':
+      return n1 * n2;
+    default:
+      throw Error(`Unknown operator: ${operator}`)
   }
 }
 
