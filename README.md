@@ -1,3 +1,4 @@
+POUR RUN TEST AVEC NPM JEST : npm test -- main.spec.ts
 # kata-rpn
 
 Reverse Polish Notation Kata
