@@ -1,19 +1,19 @@
-import PromptSync from 'prompt-sync';
+import PromptSync from "prompt-sync";
 
-const prompt = PromptSync({sigint: true})
+const prompt = PromptSync({ sigint: true });
 
 export const mainFunction = (input: string | null): number => {
   if (!input) {
     return 0;
   }
   const stack = new Array();
-  const arrayInput = input.split(' ')
+  const arrayInput = input.split(" ");
   for (const element of arrayInput) {
     if (isNaN(Number(element))) {
       let result;
       let number1;
       let number2;
-      if (element == 'sqrt') {
+      if (element == "sqrt") {
         number1 = stack.pop();
       } else {
         number1 = stack.pop();
@@ -21,7 +21,7 @@ export const mainFunction = (input: string | null): number => {
       }
 
       if (!number1) {
-        console.error('No number1');
+        console.error("No number1");
         return 0;
       }
 
@@ -32,25 +32,24 @@ export const mainFunction = (input: string | null): number => {
     }
   }
   return stack.pop();
-}
+};
 
 export const operation = (number1: number, number2: number | null, operator: string): number => {
   switch (operator) {
-    case '+':
+    case "+":
       return number1 + (number2 ?? 0);
-    case '-':
+    case "-":
       return number1 - (number2 ?? 0);
-    case '/':
+    case "/":
       return number1 / (number2 ?? 0);
-    case '*':
+    case "*":
       return number1 * (number2 ?? 0);
-    case 'sqrt':
+    case "sqrt":
       return Math.sqrt(number1);
     default:
-      console.error('Operation not allowed');
+      console.error("Operation not allowed");
       return 1;
   }
-}
-
-const result = mainFunction(prompt('Please provide a rpn operation: '));
+};
+const result = mainFunction(prompt("Please provide a rpn operation: "));
 console.log(result);
