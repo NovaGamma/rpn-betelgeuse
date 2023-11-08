@@ -2,7 +2,7 @@
   "name": "rpn-betelgeuse",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "run.ts",
   "scripts": {
     "build": "npx tsc",
     "start": "ts-node run.ts",
