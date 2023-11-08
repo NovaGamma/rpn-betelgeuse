@@ -1,10 +1,6 @@
-import PromptSync from "prompt-sync";
-
-const prompt = PromptSync({ sigint: true });
-
 export const mainFunction = (input: string | null): number => {
   if (!input) {
-    return 0;
+    throw new Error("No input");
   }
   const stack = new Array();
   const arrayInput = input.split(" ");
@@ -21,8 +17,7 @@ export const mainFunction = (input: string | null): number => {
       }
 
       if (!number1) {
-        console.error("No number1");
-        return 0;
+        throw new Error("No number1");
       }
 
       result = operation(number1, number2, element);
@@ -51,5 +46,3 @@ export const operation = (number1: number, number2: number | null, operator: str
       return 1;
   }
 };
-const result = mainFunction(prompt("Please provide a rpn operation: "));
-console.log(result);

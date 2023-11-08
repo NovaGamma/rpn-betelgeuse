@@ -30,3 +30,10 @@ describe("testing sqrt operation", () => {
     expect(mainFunction("9 sqrt")).toBe(3);
   });
 });
+
+describe("testing sqrt limits", () => {
+  const errorType = new Error("No number1");
+  test("sqrt alone should throw", () => {
+    expect(mainFunction("sqrt")).toThrowError(errorType);
+  });
+});
